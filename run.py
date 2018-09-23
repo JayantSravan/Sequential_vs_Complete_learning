@@ -7,5 +7,12 @@ import scipy as sp
 import matplotlib
 
 class Data:
+    def __init__(self):
+        self.points = []
+
     def generate(self, mean, numOfPoints):
-        pass
+        self.points = np.random.binomial(size=numOfPoints, n=1, p=mean)
+
+
+data = Data()
+data.generate(0.5,150)
