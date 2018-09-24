@@ -20,7 +20,7 @@ def main():
 			a+=1
 		else:
 			b+=1
-		results+=[np.random.beta(a,b)]
+		results+=[(a,b)]
 	
 	print(results)
 	
