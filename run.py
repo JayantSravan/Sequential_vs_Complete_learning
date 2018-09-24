@@ -6,7 +6,7 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import matplotlib.ticker as mt
+from scipy.stats import beta
 import imageio
 
 
@@ -33,9 +33,9 @@ def init():
     return line,
 
 def update(i):
-    line.set_ydata(np.sin(x+i/100))
+    line.set_ydata(beta.pdf(x, i/2 , i/4))
     return line,
 
-ani = animation.FuncAnimation(fig, update, init_func = init, interval = 2, blit = True)
+ani = animation.FuncAnimation(fig, update, init_func = init, interval = 20, blit = True)
 
 plt.show()
