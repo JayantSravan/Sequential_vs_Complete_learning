@@ -28,19 +28,28 @@ def main():
     fig, ax = plt.subplots()
     x = np.arange(0, 1, 0.01)
 
+    ax.set(title = 'Coin Tossing Problem', xlabel = 'Mean', ylabel = 'PDF')
+    line, = ax.plot(beta.pdf(x,1,1), color = 'r', label = 'Sequential Data')
 
-    line, = ax.plot(beta.pdf(x,1,1))
+    plt.plot( beta.pdf(x, results[len(results)-1][0], results[len(results)-1][1]), color='blue', label = 'Complete Data' )
 
+    plt.ylim(0,11)
+    #add this - , beta.pdf(x, results[len(results)-1][0], results[len(results)-1][1]), color='blue'
     def init2():
         line.set_ydata([np.nan] * len(x))
         return line,
 
     def update(i):
-        line.set_ydata(beta.pdf(x, results[i%len(results)][0], results[i%len(results)][1]))
+        line.set_ydata(beta.pdf(x, results[i%len(results)][0], results[i%len(results)][1]) )
+        if(i>len(results)):
+            ani.event_source.stop()
         return line,
 
     ani = animation.FuncAnimation(fig, update, init_func = init2, interval = 300, blit = True, repeat_delay = 5000)
+    plt.legend()
 
+
+    ani.save('Animation.mp4')
     plt.show()
 
 
