@@ -46,8 +46,9 @@ def main():
 		if i in powers:
 			pi_list.append(8*sum/i)
 			ax.scatter(x_list, y_list, z_list, c=col_list, marker='o')
+			plt.savefig("DataPoints:{}".format(i))
 			print(pi_list)
-			plt.show()
+			
 
 if __name__=='__main__':
 	main()
