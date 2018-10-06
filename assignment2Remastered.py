@@ -1,9 +1,9 @@
-'''The objective of this project is to find the value of pi using method of approximatig the integral of a certain form to a procedure of sampling values 
+'''The objective of this project is to find the value of pi using method of approximatig the integral of a certain form to a procedure of sampling values
 from a PD and finding some statistic of the PD.'''
-import scipy as sp 
-import numpy as np 
-import matplotlib.pyplot as plt 
-import math 
+import scipy as sp
+import numpy as np
+import matplotlib.pyplot as plt
+import math
 
 def init():
 	'''Hardcoded parameters'''
@@ -24,7 +24,7 @@ def main():
 	col_list=[]
 	pi_list=[]
 	upper_bound,powers,r=init()
-	for i in range(1,upper_bound,1):
+	for i in range(1,upper_bound+1,1):
 		x_list.append(np.random.uniform(-r,r))
 		y_list.append(np.random.uniform(-r,r))
 
@@ -37,7 +37,8 @@ def main():
 		if i in powers:
 			pi_list.append(4*sum/i)
 			plt.scatter(x_list,y_list,c=col_list,s=5,linewidth=0)
-			plt.show()
+			#plt.show()
+			plt.savefig("2D:DataPoints:{}".format(i))
 			print(pi_list)
 
 if __name__=='__main__':

@@ -1,10 +1,10 @@
-'''The objective of this project is to find the value of pi using method of approximatig the integral of a certain form to a procedure of sampling values 
+'''The objective of this project is to find the value of pi using method of approximatig the integral of a certain form to a procedure of sampling values
 from a PD and finding some statistic of the PD.'''
-import scipy as sp 
-import numpy as np 
-import matplotlib.pyplot as plt 
+import scipy as sp
+import numpy as np
+import matplotlib.pyplot as plt
 import matplotlib
-import math 
+import math
 from mpl_toolkits.mplot3d import Axes3D
 
 def init():
@@ -44,11 +44,11 @@ def main():
 			col_list.append('red')
 
 		if i in powers:
-			pi_list.append(8*sum/i)
+			pi_list.append(6*sum/i)
 			ax.scatter(x_list, y_list, z_list, c=col_list, marker='o')
 			plt.savefig("DataPoints:{}".format(i))
 			print(pi_list)
-			
+
 
 if __name__=='__main__':
 	main()
