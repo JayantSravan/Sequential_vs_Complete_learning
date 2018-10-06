@@ -4,7 +4,8 @@ import scipy as sp
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from scipy.stats import beta
+from scipy.stats import gamma
+import scipy.special as scsp
 import matplotlib.patches as mpatches
 
 def init():
@@ -14,6 +15,16 @@ def init():
 	sz=150
 	mean=0.5
 	return a,b,sz,mean
+
+def betafun(a,b,x):
+    betaf = (scsp.gamma(a+b)/(scsp.gamma(a)*scsp.gamma(b)))*(x**(a-1))*((1-x)**(b-1))
+    return betaf
+
+def pdf_usr(x,a,b):
+    li=[]
+    for i in x:
+        li+=[betafun(a,b,i)]
+    return li
 
 def main():
     a,b,sz,mean=init()
@@ -29,7 +40,7 @@ def main():
     x = np.arange(0, 1, 0.01)
 
     ax.set(title = 'Coin Tossing Problem', xlabel = 'Mean', ylabel = 'PDF')
-    line, = ax.plot(beta.pdf(x,1,1), color = 'r', label = 'Sequential Data')
+    line, = ax.plot(pdf_usr(x,1,1), color = 'r', label = 'Sequential Data')
 
     plt.plot( beta.pdf(x, results[len(results)-1][0], results[len(results)-1][1]), color='blue', label = 'Complete Data' )
 
@@ -40,7 +51,7 @@ def main():
         return line,
 
     def update(i):
-        line.set_ydata(beta.pdf(x, results[i%len(results)][0], results[i%len(results)][1]) )
+        line.set_ydata(pdf_usr(x, results[i%len(results)][0], results[i%len(results)][1]) )
         if(i>len(results)):
             ani.event_source.stop()
         return line,
@@ -54,4 +65,4 @@ def main():
 
 
 if __name__=='__main__':
-	main()
+    main()
