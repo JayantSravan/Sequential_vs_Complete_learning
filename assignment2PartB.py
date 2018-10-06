@@ -11,7 +11,7 @@ def init():
 	'''Hardcoded parameters'''
 	n=10 #the number of data points
 	r=2 #radius of circle
-	exp=4#the required exponent
+	exp=7#the required exponent
 	powers=[]
 	for i in range(1,exp+1,1):
 		powers+=[math.pow(10,i)];

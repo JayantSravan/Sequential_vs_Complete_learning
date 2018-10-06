@@ -42,7 +42,7 @@ def main():
     ax.set(title = 'Coin Tossing Problem', xlabel = 'Mean', ylabel = 'PDF')
     line, = ax.plot(pdf_usr(x,1,1), color = 'r', label = 'Sequential Data')
 
-    plt.plot( beta.pdf(x, results[len(results)-1][0], results[len(results)-1][1]), color='blue', label = 'Complete Data' )
+    plt.plot( pdf_usr(x, results[len(results)-1][0], results[len(results)-1][1]), color='blue', label = 'Complete Data' )
 
     plt.ylim(0,11)
     #add this - , beta.pdf(x, results[len(results)-1][0], results[len(results)-1][1]), color='blue'
